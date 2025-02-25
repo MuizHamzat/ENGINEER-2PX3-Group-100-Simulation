@@ -1,0 +1,43 @@
+# VS Code settings
+.vscode/
+
+# Mac system files
+.DS_Store
+
+# Node modules (if using Node.js)
+node_modules/
+
+# Python virtual environments
+venv/
+__pycache__/
+
+# C++ build files
+*.o
+*.out
+*.exe
+build/
+
+# Unity (if you use Unity for your game dev)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+
+# Logs
+*.log
+
+# Compiled binaries
+*.dll
+*.so
+*.dylib
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Other
+*.tmp
+*.swp
