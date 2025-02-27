@@ -13,7 +13,7 @@ class Intersection:
 
 
 #---------------------------------------------------------------Variables----------------------------------------------------------------------------#
-        self.vehicle_rate = 10
+        self.vehicle_rate = 100
         self.v = 17
         self.speed_variance = 0
         self.self_driving_vehicle_proportion = 0 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
