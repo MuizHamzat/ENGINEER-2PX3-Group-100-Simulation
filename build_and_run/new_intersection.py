@@ -30,6 +30,8 @@ class Intersection:
         self.sim.create_segment((lane_space/2 + island_width/2, length + intersection_size/2), (lane_space/2 + island_width/2, intersection_size/2))
         # South In (Outer)
         self.sim.create_segment((lane_space*3/2 + island_width/2, length+intersection_size/2), (lane_space*3/2+island_width/2, intersection_size/2))
+        #South Emergency Lane
+        #self.sim.create_segment((lane_space*5/2 + island_width/2, length + intersection_size/2), (lane_space*5/2 + island_width/2, intersection_size/2))
 
         # East In (Inner)
         self.sim.create_segment((length + intersection_size/2, -lane_space/2 - island_width/2), (intersection_size/2, -lane_space/2 - island_width/2))
@@ -116,6 +118,36 @@ class Intersection:
         self.sim.create_quadratic_bezier_curve((-lane_space/2 - island_width/2, -intersection_size/2), (-lane_space/2 - island_width/2, lane_space/2 + island_width/2), (intersection_size/2, lane_space/2 + island_width/2))
         # West to North
         self.sim.create_quadratic_bezier_curve((-intersection_size/2, lane_space/2 + island_width/2), (lane_space/2 + island_width/2, lane_space/2 + island_width/2), (lane_space/2 + island_width/2, -intersection_size/2))
+
+        #Emergency Vehicvle Lanes
+
+        #South In
+        self.sim.create_segment((lane_space*5/2 + island_width/2 + island_width, length + intersection_size/2), (lane_space*5/2 + island_width/2 + island_width, intersection_size))
+        #East Out
+        self.sim.create_segment((length + intersection_size/2, lane_space*5/2 + island_width/2 + island_width), (intersection_size, lane_space*5/2 + island_width/2 + island_width))
+        #Curve South to East
+        self.sim.create_quadratic_bezier_curve((lane_space*5/2 + island_width/2 + island_width, intersection_size), (lane_space*5/2 + island_width/2 + island_width, lane_space*5/2 + island_width/2 + island_width), (intersection_size, lane_space*5/2 + island_width/2 + island_width))
+
+        #East In
+        self.sim.create_segment((length + intersection_size/2, -lane_space*5/2 - island_width/2 - island_width), (intersection_size, -lane_space*5/2 - island_width/2 - island_width))
+        #North Out
+        self.sim.create_segment((lane_space*5/2 + island_width/2 + island_width, -length - intersection_size/2), (lane_space*5/2 + island_width/2 + island_width, -intersection_size))
+        #Curve East to North
+        self.sim.create_quadratic_bezier_curve((intersection_size, -lane_space*5/2 - island_width/2 - island_width), (lane_space*5/2 + island_width/2 + island_width, -lane_space*5/2 - island_width/2 - island_width), (lane_space*5/2 + island_width/2 + island_width, -intersection_size))
+
+        #North In
+        self.sim.create_segment((-lane_space*5/2 - island_width/2 - island_width, -length - intersection_size/2), (-lane_space*5/2 - island_width/2 - island_width, -intersection_size))
+        #West Out
+        self.sim.create_segment((-length - intersection_size/2, -lane_space*5/2 - island_width/2 - island_width), (-intersection_size, -lane_space*5/2 - island_width/2 - island_width))
+        #Curve North to West
+        self.sim.create_quadratic_bezier_curve((-lane_space*5/2 - island_width/2 - island_width, -intersection_size), (-lane_space*5/2 - island_width/2 - island_width, -lane_space*5/2 - island_width/2 - island_width), (-intersection_size, -lane_space*5/2 - island_width/2 - island_width))
+
+        #West In
+        self.sim.create_segment((-length - intersection_size/2, lane_space*5/2 + island_width/2 + island_width), (-intersection_size, lane_space*5/2 + island_width/2 + island_width))
+        #South Out
+        self.sim.create_segment((-lane_space*5/2 - island_width/2 - island_width, intersection_size), (-lane_space*5/2 - island_width/2 - island_width, length + intersection_size/2))
+        #Curve West to South
+        self.sim.create_quadratic_bezier_curve((-intersection_size - 0.05, lane_space*5/2 + island_width/2 + island_width), (-lane_space*5/2 - island_width/2 - island_width, lane_space*5/2 + island_width/2 + island_width), (-lane_space*5/2 - island_width/2 - island_width, intersection_size))
         
     #all interfearing paths
     
