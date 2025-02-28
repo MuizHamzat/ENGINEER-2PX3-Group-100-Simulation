@@ -274,7 +274,7 @@ class Window:
 
     def draw_segments(self):
         for segment in self.simulation.segments:
-            dpg.draw_polyline(segment.points, color=(180, 180, 220), thickness=segment.width*self.zoom, parent="Canvas")
+            dpg.draw_polyline(segment.points, color=segment.color, thickness=segment.width*self.zoom, parent="Canvas")
             #dpg.draw_arrow(segment.points[-1], segment.points[-2], thickness=0, size=2, color=(0, 0, 0, 50), parent="Canvas")
 
     def draw_vehicles(self):

@@ -49,12 +49,12 @@ class Simulation:
         veh = Vehicle(kwargs)
         self.add_vehicle(veh)
 
-    def create_segment(self, *args):
-        seg = Segment(args)
+    def create_segment(self, start, end, color=(180, 180, 220)):
+        seg = Segment([start, end], config={'color': color})
         self.add_segment(seg)
 
-    def create_quadratic_bezier_curve(self, start, control, end):
-        cur = QuadraticCurve(start, control, end)
+    def create_quadratic_bezier_curve(self, start, control, end, color=(180, 180, 220)):
+        cur = QuadraticCurve(start, control, end, config={'color': color})
         self.add_segment(cur)
 
     def create_cubic_bezier_curve(self, start, control_1, control_2, end):

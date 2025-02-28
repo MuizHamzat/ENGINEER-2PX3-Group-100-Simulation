@@ -14,6 +14,7 @@ class Segment(ABC):
         self.vehicles = deque()
         self.width = 3.5
         self.has_traffic_signal = False
+        self.color = config.get('color', (180, 180, 220))
 
         self.set_functions()
         for attr, val in config.items():
