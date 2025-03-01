@@ -191,61 +191,93 @@ class Intersection:
 
         #Emergency Vehicvle Lanes
 
-        #South In
+        # South In (Left Turn)
         self.sim.create_segment(
             (lane_space*5/2 + island_width/2 + island_width, length + intersection_size/2), 
             (lane_space*5/2 + island_width/2 + island_width, intersection_size))
-        #East Out
+        # South In (Right Turn)
+        self.sim.create_segment(
+            (lane_space*7/2 + island_width/2 + island_width, length + intersection_size/2), 
+            (lane_space*7/2 + island_width/2 + island_width, intersection_size))
+        # East Out (Left Turn)
         self.sim.create_segment(
             (length + intersection_size/2, lane_space*5/2 + island_width/2 + island_width), 
             (intersection_size, lane_space*5/2 + island_width/2 + island_width))
+        # East Out (Right Turn)
+        self.sim.create_segment(
+            (length + intersection_size/2, lane_space*7/2 + island_width/2 + island_width), 
+            (intersection_size, lane_space*7/2 + island_width/2 + island_width))
         #Curve South to East
         self.sim.create_quadratic_bezier_curve(
-            (lane_space*5/2 + island_width/2 + island_width, intersection_size), 
-            (lane_space*5/2 + island_width/2 + island_width, lane_space*5/2 + island_width/2 + island_width), 
-            (intersection_size, lane_space*5/2 + island_width/2 + island_width))
+            (lane_space*7/2 + island_width/2 + island_width, intersection_size), 
+            (lane_space*7/2 + island_width/2 + island_width, lane_space*7/2 + island_width/2 + island_width), 
+            (intersection_size, lane_space*7/2 + island_width/2 + island_width))
 
-        #East In
+        #East In (Left Turn)
         self.sim.create_segment(
             (length + intersection_size/2, -lane_space*5/2 - island_width/2 - island_width), 
             (intersection_size, -lane_space*5/2 - island_width/2 - island_width))
-        #North Out
+        #East In (Right Turn)
+        self.sim.create_segment(
+            (length + intersection_size/2, -lane_space*7/2 - island_width/2 - island_width), 
+            (intersection_size, -lane_space*7/2 - island_width/2 - island_width))
+        #North Out (Left Turn)
         self.sim.create_segment(
             (lane_space*5/2 + island_width/2 + island_width, -length - intersection_size/2), 
             (lane_space*5/2 + island_width/2 + island_width, -intersection_size))
+        #North Out (Right Turn)
+        self.sim.create_segment(
+            (lane_space*7/2 + island_width/2 + island_width, -length - intersection_size/2), 
+            (lane_space*7/2 + island_width/2 + island_width, -intersection_size))
         #Curve East to North
         self.sim.create_quadratic_bezier_curve(
-            (intersection_size, -lane_space*5/2 - island_width/2 - island_width), 
-            (lane_space*5/2 + island_width/2 + island_width, -lane_space*5/2 - island_width/2 - island_width), 
-            (lane_space*5/2 + island_width/2 + island_width, -intersection_size))
+            (intersection_size, -lane_space*7/2 - island_width/2 - island_width), 
+            (lane_space*7/2 + island_width/2 + island_width, -lane_space*7/2 - island_width/2 - island_width), 
+            (lane_space*7/2 + island_width/2 + island_width, -intersection_size))
 
-        #North In
+        #North In (Left Turn)
         self.sim.create_segment(
             (-lane_space*5/2 - island_width/2 - island_width, -length - intersection_size/2), 
             (-lane_space*5/2 - island_width/2 - island_width, -intersection_size))
-        #West Out
+        #North In (Right Turn)
+        self.sim.create_segment(
+            (-lane_space*7/2 - island_width/2 - island_width, -length - intersection_size/2), 
+            (-lane_space*7/2 - island_width/2 - island_width, -intersection_size))
+        #West Out (Left Turn)
         self.sim.create_segment(
             (-length - intersection_size/2, -lane_space*5/2 - island_width/2 - island_width), 
             (-intersection_size, -lane_space*5/2 - island_width/2 - island_width))
+        #West Out (Right Turn)
+        self.sim.create_segment(
+            (-length - intersection_size/2, -lane_space*7/2 - island_width/2 - island_width), 
+            (-intersection_size, -lane_space*7/2 - island_width/2 - island_width))
         #Curve North to West
         self.sim.create_quadratic_bezier_curve(
-            (-lane_space*5/2 - island_width/2 - island_width, -intersection_size), 
-            (-lane_space*5/2 - island_width/2 - island_width, -lane_space*5/2 - island_width/2 - island_width), 
-            (-intersection_size, -lane_space*5/2 - island_width/2 - island_width))
+            (-lane_space*7/2 - island_width/2 - island_width, -intersection_size), 
+            (-lane_space*7/2 - island_width/2 - island_width, -lane_space*7/2 - island_width/2 - island_width), 
+            (-intersection_size, -lane_space*7/2 - island_width/2 - island_width))
 
-        #West In
+        #West In (Left Turn)
         self.sim.create_segment(
             (-length - intersection_size/2, lane_space*5/2 + island_width/2 + island_width), 
             (-intersection_size, lane_space*5/2 + island_width/2 + island_width))
-        #South Out
+        #West In (Right Turn)
+        self.sim.create_segment(
+            (-length - intersection_size/2, lane_space*7/2 + island_width/2 + island_width), 
+            (-intersection_size, lane_space*7/2 + island_width/2 + island_width))
+        #South Out (Left Turn)
         self.sim.create_segment(
             (-lane_space*5/2 - island_width/2 - island_width, intersection_size), 
             (-lane_space*5/2 - island_width/2 - island_width, length + intersection_size/2))
+        #South Out (Right Turn)
+        self.sim.create_segment(
+            (-lane_space*7/2 - island_width/2 - island_width, intersection_size), 
+            (-lane_space*7/2 - island_width/2 - island_width, length + intersection_size/2))
         #Curve West to South
         self.sim.create_quadratic_bezier_curve(
-            (-intersection_size - 0.05, lane_space*5/2 + island_width/2 + island_width), 
-            (-lane_space*5/2 - island_width/2 - island_width, lane_space*5/2 + island_width/2 + island_width), 
-            (-lane_space*5/2 - island_width/2 - island_width, intersection_size))
+            (-intersection_size, lane_space*7/2 + island_width/2 + island_width), 
+            (-lane_space*7/2 - island_width/2 - island_width, lane_space*7/2 + island_width/2 + island_width), 
+            (-lane_space*7/2 - island_width/2 - island_width, intersection_size))
 
         #Emergency Vehicle Left Turns
 
