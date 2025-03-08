@@ -23,6 +23,8 @@ class VehicleGenerator:
             (1, {})
         ]
 
+        self.default_color = (0, 0, 255)
+        self.default_size = (1.74, 4)
         self.last_added_time = 0
 
 
@@ -38,6 +40,8 @@ class VehicleGenerator:
             r -= weight
             if r <= 0:
 
+                config['color'] = self.default_color
+                config['size'] = self.default_size
                 veh = Vehicle(config)
 
                 return veh

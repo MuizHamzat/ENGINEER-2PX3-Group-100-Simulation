@@ -19,6 +19,8 @@ class Vehicle:
         self.id = uuid.uuid4()
         self.w = 1.74
         self.l = 4
+        self.color = (0, 0, 255)
+        self.size = (self.w, self.l)
         self.s0 = 8
         self.T = 1
         self.v_max = 16.6
@@ -33,7 +35,6 @@ class Vehicle:
         self.v = 16.6
         self.a = 0
         self.stopped = False
-
 
 
     def init_properties(self):

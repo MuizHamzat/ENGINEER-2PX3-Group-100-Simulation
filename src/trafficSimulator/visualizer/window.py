@@ -290,9 +290,9 @@ class Window:
                 node = dpg.add_draw_node(parent="Canvas")
                 dpg.draw_line(
                     (0, 0),
-                    (vehicle.l, 0),
+                    (vehicle.size[1], 0),
                     thickness= vehicle.w*self.zoom,
-                    color=(0, 0, 255),
+                    color=vehicle.color,
                     parent=node
                 )
 
