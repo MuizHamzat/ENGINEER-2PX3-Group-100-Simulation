@@ -14,6 +14,7 @@ class Intersection:
 
 #---------------------------------------------------------------Variables----------------------------------------------------------------------------#
         self.vehicle_rate = 10
+        self.pedestrian_rate = 10
         self.v = 17
         self.speed_variance = 0
         self.self_driving_vehicle_proportion = 0 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
@@ -375,23 +376,23 @@ class Intersection:
         # endregion
         
         
-        # region Pedestrian Bridges
-        #South to North
+        # region Pedestrian Bridges (paths 68-71)
+        #South to North 68
         self.sim.create_segment(
             (lane_space*15/2 + island_width/2 + island_width, intersection_size + 10), 
             (lane_space*15/2 + island_width/2 + island_width, -intersection_size - 10),
               color=(233, 116, 81), width=2.5)
-        #East to West
+        #East to West 69
         self.sim.create_segment(
             (intersection_size + 10, lane_space*15/2 + island_width/2 + island_width), 
             (-intersection_size - 10, lane_space*15/2 + island_width/2 + island_width),
               color=(233, 116, 81), width=2.5)
-        #North to South
+        #North to South 70
         self.sim.create_segment(
             (-lane_space*15/2 - island_width/2 - island_width, -intersection_size - 10), 
             (-lane_space*15/2 - island_width/2 - island_width, intersection_size + 10),
               color=(233, 116, 81), width=2.5)
-        #West to East
+        #West to East 71
         self.sim.create_segment(
             (-intersection_size - 10, -lane_space*15/2 - island_width/2 - island_width), 
             (intersection_size + 10, -lane_space*15/2 - island_width/2 - island_width),
@@ -517,10 +518,28 @@ class Intersection:
             })
         # endregion
         
+        # region Pedestrian generator
+        self.ped = VehicleGenerator({
+            'vehicles': [
+                #South to North
+                (1, {'path': [68], 'v_max': 5}),
+                #East to West
+                (1, {'path': [69], 'v_max': 5}),
+                #North to South
+                (1, {'path': [70], 'v_max': 5}),
+                #West to East
+                (1, {'path': [71], 'v_max': 5})
+                ], 'vehicle_rate' : self.pedestrian_rate,
+                'default_color' : (0, 255, 0),
+                'default_size'  : (0.74, 1.5) 
+            })
+        #endregion
+        
         #adding vehicle generators
         self.sim.add_vehicle_generator(self.vg)
         self.sim.add_vehicle_generator(self.sdvg)
         self.sim.add_vehicle_generator(self.ev)
+        self.sim.add_vehicle_generator(self.ped)
 
     
 
