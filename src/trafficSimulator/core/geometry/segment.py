@@ -12,7 +12,7 @@ class Segment(ABC):
     def __init__(self, points, config={}):
         self.points = points
         self.vehicles = deque()
-        self.width = 3.5
+        self.width = config.get('width', 3.5)
         self.has_traffic_signal = False
         self.color = config.get('color', (180, 180, 220))
 

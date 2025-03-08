@@ -226,6 +226,7 @@ class Intersection:
 
         #Emergency Vehicvle Lanes
 
+        #region South In East Out Lanes (paths 36-42)
         # South In (Left Turn)
         self.sim.create_segment(
             (lane_space*5/2 + island_width/2 + island_width, length + intersection_size/2), 
@@ -255,7 +256,9 @@ class Intersection:
             (lane_space*9/2 + island_width/2 + island_width, intersection_size), 
             (lane_space*9/2 + island_width/2 + island_width, lane_space*9/2 + island_width/2 + island_width), 
             (intersection_size, lane_space*9/2 + island_width/2 + island_width))
+        #endregion
 
+        #region East In North Out Lanes (paths 43-49)
         # East In (Left Turn)
         self.sim.create_segment(
             (length + intersection_size/2, -lane_space*5/2 - island_width/2 - island_width), 
@@ -285,7 +288,9 @@ class Intersection:
             (intersection_size, -lane_space*9/2 - island_width/2 - island_width), 
             (lane_space*9/2 + island_width/2 + island_width, -lane_space*9/2 - island_width/2 - island_width), 
             (lane_space*9/2 + island_width/2 + island_width, -intersection_size))
+        #endregion
 
+        #region North In West Out Lanes (paths 50-56)
         # North In (Left Turn)
         self.sim.create_segment(
             (-lane_space*5/2 - island_width/2 - island_width, -length - intersection_size/2), 
@@ -315,7 +320,9 @@ class Intersection:
             (-lane_space*9/2 - island_width/2 - island_width, -intersection_size), 
             (-lane_space*9/2 - island_width/2 - island_width, -lane_space*9/2 - island_width/2 - island_width), 
             (-intersection_size, -lane_space*9/2 - island_width/2 - island_width))
+        #endregion
 
+        #region West In South Out Lanes (paths 57-63)
         # West In (Left Turn)
         self.sim.create_segment(
             (-length - intersection_size/2, lane_space*5/2 + island_width/2 + island_width), 
@@ -345,9 +352,10 @@ class Intersection:
             (-intersection_size, lane_space*9/2 + island_width/2 + island_width), 
             (-lane_space*9/2 - island_width/2 - island_width, lane_space*9/2 + island_width/2 + island_width), 
             (-lane_space*9/2 - island_width/2 - island_width, intersection_size))
+        #endregion
         
 
-        #Emergency Vehicle Straight Lanes
+        # region Emergency Vehicle Straight Lanes (paths 64-67)
         #South to North
         self.sim.create_segment(
             (lane_space*7/2 + island_width/2 + island_width, intersection_size), 
@@ -364,15 +372,33 @@ class Intersection:
         self.sim.create_segment(
             (-intersection_size, -lane_space*7/2 - island_width/2 - island_width), 
             (intersection_size, -lane_space*7/2 - island_width/2 - island_width), color=(173, 216, 230))
+        # endregion
         
         
-        #Pedestrian Bridges
+        # region Pedestrian Bridges
         #South to North
         self.sim.create_segment(
-            (lane_space*15/2 + island_width/2 + island_width, intersection_size + 3), 
-            (lane_space*15/2 + island_width/2 + island_width, -intersection_size - 3), color=(233, 116, 81))
+            (lane_space*15/2 + island_width/2 + island_width, intersection_size + 10), 
+            (lane_space*15/2 + island_width/2 + island_width, -intersection_size - 10),
+              color=(233, 116, 81), width=2.5)
+        #East to West
+        self.sim.create_segment(
+            (intersection_size + 10, lane_space*15/2 + island_width/2 + island_width), 
+            (-intersection_size - 10, lane_space*15/2 + island_width/2 + island_width),
+              color=(233, 116, 81), width=2.5)
+        #North to South
+        self.sim.create_segment(
+            (-lane_space*15/2 - island_width/2 - island_width, -intersection_size - 10), 
+            (-lane_space*15/2 - island_width/2 - island_width, intersection_size + 10),
+              color=(233, 116, 81), width=2.5)
+        #West to East
+        self.sim.create_segment(
+            (-intersection_size - 10, -lane_space*15/2 - island_width/2 - island_width), 
+            (intersection_size + 10, -lane_space*15/2 - island_width/2 - island_width),
+              color=(233, 116, 81), width=2.5)
+        # endregion
         
-    #all interfearing paths
+    #region Interfearing paths
     
         #left turn from the South intersects with the inner and outer straights coming from the North
         self.sim.define_interfearing_paths([4, 32], [8, 24],turn=True)
@@ -386,12 +412,13 @@ class Intersection:
         #left turn from the West intersects with the inner and outer straights coming from the East
         self.sim.define_interfearing_paths([10, 35], [6, 22],turn=True)
         self.sim.define_interfearing_paths([10, 35], [7, 23],turn=True)
+    #endregion
 
         '''
         this section creates vehicle generators, we have two vehicle generators one; that creates regular vehicles (self.vg)
         and one that creates self-driving vehicles (self.sdvg)
         '''
-        #regular vehicle generator
+        # region Regular vehicle generator
         self.vg = VehicleGenerator({
             #The first variable: 1 defines the weight if the vehicle; the higher the weight the more likely that type of vehicle will generate
             # 'path' defines the order of segments the vehicle will drive over
@@ -423,9 +450,10 @@ class Intersection:
                 (1, {'path': [10, 35, 16], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 ], 'vehicle_rate' : self.vehicle_rate*(1-self.self_driving_vehicle_proportion) 
             })
+        # endregion
         
         
-        #self-driving vehicle generator
+        # region Self-driving vehicle generator
         self.sdvg = VehicleGenerator({
  
             #The first variable: 1 defines the weight if the vehicle; the higher the weight the more likely that type of vehicle will generate
@@ -459,6 +487,7 @@ class Intersection:
                 (1, {'path': [10, 35, 16], 'v_max': self.v ,'T' : 0.1,'s0' : 4}),
                 ], 'vehicle_rate' : self.vehicle_rate*self.self_driving_vehicle_proportion 
             })
+        # endregion
         
         #adding both vehicle generators
         self.sim.add_vehicle_generator(self.vg)
