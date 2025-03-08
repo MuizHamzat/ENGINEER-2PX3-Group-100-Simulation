@@ -13,10 +13,11 @@ class Intersection:
 
 
 #---------------------------------------------------------------Variables----------------------------------------------------------------------------#
-        self.vehicle_rate = 10
-        self.pedestrian_rate = 10
-        self.v = 17
-        self.speed_variance = 0
+        self.vehicle_rate = 100
+        self.emergency_vehicle_rate = 10
+        self.pedestrian_rate = 30
+        self.v = 20
+        self.speed_variance = 0.5
         self.self_driving_vehicle_proportion = 0 #number between 0 and 1, 0 means no self driving vehicles, 1 means entirely self driving vehicles
         if self.self_driving_vehicle_proportion == 1:
             self.v = self.v * 1.5
@@ -512,7 +513,7 @@ class Intersection:
                 (1, {'path': [58, 67, 40], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance + 10}),
                 (1, {'path': [59, 63, 62], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance + 10}),
                 (1, {'path': [57, 3, 46], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance + 10})
-                ], 'vehicle_rate' : self.vehicle_rate*(1-self.self_driving_vehicle_proportion),
+                ], 'vehicle_rate' : self.emergency_vehicle_rate,
                 'default_color' : (255, 0, 0),
                 'default_size'  : (1.74, 4.5) 
             })

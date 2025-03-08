@@ -1,4 +1,4 @@
-from base_intersection import *
+from new_intersection import *
 import pandas as pd
 import matplotlib.pyplot as plt
 import time
