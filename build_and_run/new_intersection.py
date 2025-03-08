@@ -13,7 +13,7 @@ class Intersection:
 
 
 #---------------------------------------------------------------Variables----------------------------------------------------------------------------#
-        self.vehicle_rate = 100
+        self.vehicle_rate = 50
         self.emergency_vehicle_rate = 10
         self.pedestrian_rate = 30
         self.v = 20
